@@ -6,11 +6,13 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import Header from '~/components/header';
+import Footer from "./components/footer";
 import type { Route } from "./+types/root";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
+  { rel: 'shortcut icon', href: '/favicon.ico', type: 'image/x-icon' },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -21,7 +23,15 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  {
+    rel: "stylesheet",
+    href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css",
+  },
 ];
+
+export function HydrateFallback() {
+  return <div className="pl-5">The app is loading...</div>;
+}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,9 +43,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+          <ScrollRestoration />
+          <Scripts />
+        </div>
       </body>
     </html>
   );
@@ -62,7 +78,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <div className="pt-16 p-4 container mx-auto text-center text-red-800">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
@@ -70,6 +86,6 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
           <code>{stack}</code>
         </pre>
       )}
-    </main>
+    </div>
   );
 }
