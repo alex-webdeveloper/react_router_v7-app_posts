@@ -1,17 +1,19 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router';
-
+import { Link, NavLink, useLocation } from 'react-router';
+import { BASE_PATH } from '~/lib/constants';
+import { getNavClass } from '~/lib/utils/navLinkClass';
 interface NavigationItem {
   name: string;
   href: string;
 }
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const location = useLocation();
 
   const navigation: NavigationItem[] = [
-    { name: 'My Posts', href: '/' },
-    { name: 'Query Posts', href: '/query-posts' },
-    { name: 'Send Data', href: '/send-data' }
+    { name: 'My Posts', href: BASE_PATH + '/' },
+    { name: 'Query Posts', href: BASE_PATH + '/query-posts' },
+    { name: 'Send Data', href: BASE_PATH + '/send-data' }
   ];
 
   return (
@@ -69,12 +71,7 @@ export default function Header() {
                     <NavLink
                       key={item.name}
                       to={item.href}
-                      className={({ isActive }) =>
-                        `rounded-md px-3 py-2 text-sm font-medium ${isActive
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                        }`
-                      }
+                      className={() => getNavClass(item.href)}
                     >
                       {item.name}
                     </NavLink>

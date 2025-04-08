@@ -11,7 +11,7 @@ const FormSchema = z.object({
 		.min(5, { message: 'Must be 5 or more characters long' }),
 });
 
-const url: string = 'https://api.openjavascript.info/postd';
+const url: string = 'https://api.openjavascript.info/post';
 
 export type State = {
 	errors?: {
@@ -61,7 +61,8 @@ export async function sendData(
 		});
 
 		if (!response.ok) {
-      throw new Error(`Ошибка запроса: ${response.status}`);
+			const errorText = await response.text();
+      throw new Error(`Ошибка запроса: ${response.status} - ${errorText}`);
     }
 		const data = await response.json();
 		return { status: data.status };

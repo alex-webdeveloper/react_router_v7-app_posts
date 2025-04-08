@@ -1,7 +1,8 @@
-# Welcome to React Router!
-react_router_v7-app_posts [demo](https://alex-webdeveloper.github.io/react_router_v7-app_posts) 
+# Welcome to React Router! This application is SPA
+react_router_v7-app_posts [DEMO](https://alex-webdeveloper.github.io/react_router_v7-app_posts) 
+Then launching a local server for operation db: % json-server --watch  app/db.json --port 3004
+The database is local and is located locally in the file app/db.json
 
-This application is SPA
 ## Getting Started
 ### Installation
 Install the dependencies:
@@ -13,13 +14,12 @@ Start the development server with HMR:
 ```bash
 npm run dev
 ```
-Your application will be available at `http://localhost:5173`.
+Your application will be available at `http://localhost:5173/react_router_v7-app_posts/`.
 ## Building for Production
 Create a production build:
 ```bash
 npm run build
 ```
-## Deploymen
 ### Docker Deployment
 To build and run using Docker:
 ```bash
@@ -35,4 +35,7 @@ memo
 useMemo
 useCallback
 ## Using custom hooks
+
+## Deploymen on gh-pages
+npm run deploy
 

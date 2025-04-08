@@ -8,11 +8,12 @@ import {
 } from "react-router";
 import Header from '~/components/header';
 import Footer from "./components/footer";
+import { BASE_PATH } from './lib/constants';
 import type { Route } from "./+types/root";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
-  { rel: 'shortcut icon', href: '/favicon.ico', type: 'image/x-icon' },
+  { rel: 'shortcut icon', href: BASE_PATH + '/favicon.ico', type: 'image/x-icon' },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
