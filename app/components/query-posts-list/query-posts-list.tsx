@@ -15,7 +15,9 @@ export default function QueryPostsList() {
       .then(data => {
         if (!ignore) setData(data);
       })
-      .catch(setError);
+      .catch(error => {
+        if (!ignore) setError(error);
+      });
     
     return () => {
       ignore = true;
